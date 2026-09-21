@@ -102,7 +102,7 @@ export default function HomePage() {
                   <p className="product-type">Çiğ iç fındık</p>
                   <h3>Ordu ve Giresun Seçme</h3>
                 </div>
-                <strong>₺529</strong>
+                <strong>₺749</strong>
               </div>
               <button className="add-button" data-product="Ordu ve Giresun Seçme" data-product-id="giresun-secme">
                 Sepete ekle <span>+</span>
@@ -129,7 +129,7 @@ export default function HomePage() {
                   <p className="product-type">Kavrulmuş iç fındık</p>
                   <h3>Taş Fırın Kavrulmuş</h3>
                 </div>
-                <strong>₺579</strong>
+                <strong>₺899</strong>
               </div>
               <button className="add-button" data-product="Taş Fırın Kavrulmuş" data-product-id="tas-firin-kavrulmus">
                 Sepete ekle <span>+</span>
@@ -156,7 +156,7 @@ export default function HomePage() {
                   <p className="product-type">Katkısız fındık ezmesi</p>
                   <h3>İpek Kıvam</h3>
                 </div>
-                <strong>₺459</strong>
+                <strong>₺799</strong>
               </div>
               <button className="add-button" data-product="İpek Kıvam" data-product-id="ipek-kivam">
                 Sepete ekle <span>+</span>

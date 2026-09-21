@@ -9,9 +9,9 @@ export type Product = {
 };
 
 export const CATALOG: Record<string, Product> = {
-  "giresun-secme": { id: "giresun-secme", name: "Ordu ve Giresun Seçme", price: 529, category: "Çiğ iç fındık" },
-  "tas-firin-kavrulmus": { id: "tas-firin-kavrulmus", name: "Taş Fırın Kavrulmuş", price: 579, category: "Kavrulmuş iç fındık" },
-  "ipek-kivam": { id: "ipek-kivam", name: "İpek Kıvam", price: 459, category: "Katkısız fındık ezmesi" }
+  "giresun-secme": { id: "giresun-secme", name: "Ordu ve Giresun Seçme", price: 749, category: "Çiğ iç fındık" },
+  "tas-firin-kavrulmus": { id: "tas-firin-kavrulmus", name: "Taş Fırın Kavrulmuş", price: 899, category: "Kavrulmuş iç fındık" },
+  "ipek-kivam": { id: "ipek-kivam", name: "İpek Kıvam", price: 799, category: "Katkısız fındık ezmesi" }
 };
 
 export function getProduct(id: string): Product | undefined {
