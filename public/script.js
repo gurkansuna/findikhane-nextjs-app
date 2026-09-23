@@ -1,8 +1,8 @@
-const catalog = {
-  "giresun-secme": { name: "Ordu ve Giresun Seçme", price: 749 },
-  "tas-firin-kavrulmus": { name: "Taş Fırın Kavrulmuş", price: 899 },
-  "ipek-kivam": { name: "İpek Kıvam", price: 799 }
-};
+// Katalog artık burada sabit tutulmuyor: fiyat tek kaynağı src/lib/pricing.ts,
+// sunucu tarafında hesaplanıp sayfaya #catalog-data içinde JSON olarak gömülüyor.
+// Böylece fiyat güncellendiğinde bu dosyayı elle değiştirmeye gerek kalmıyor.
+const catalogDataEl = document.querySelector("#catalog-data");
+const catalog = catalogDataEl ? JSON.parse(catalogDataEl.textContent) : {};
 
 const cart = new Map();
 const cartCount = document.querySelector("#cart-count");

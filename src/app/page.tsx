@@ -1,4 +1,6 @@
 import Script from "next/script";
+import { CATALOG } from "@/lib/catalog";
+import { money } from "@/lib/money";
 
 export default function HomePage() {
   return (
@@ -102,7 +104,7 @@ export default function HomePage() {
                   <p className="product-type">Çiğ iç fındık</p>
                   <h3>Ordu ve Giresun Seçme</h3>
                 </div>
-                <strong>₺749</strong>
+                <strong>₺{money(CATALOG["giresun-secme"].price)}</strong>
               </div>
               <button className="add-button" data-product="Ordu ve Giresun Seçme" data-product-id="giresun-secme">
                 Sepete ekle <span>+</span>
@@ -129,7 +131,7 @@ export default function HomePage() {
                   <p className="product-type">Kavrulmuş iç fındık</p>
                   <h3>Taş Fırın Kavrulmuş</h3>
                 </div>
-                <strong>₺899</strong>
+                <strong>₺{money(CATALOG["tas-firin-kavrulmus"].price)}</strong>
               </div>
               <button className="add-button" data-product="Taş Fırın Kavrulmuş" data-product-id="tas-firin-kavrulmus">
                 Sepete ekle <span>+</span>
@@ -156,7 +158,7 @@ export default function HomePage() {
                   <p className="product-type">Katkısız fındık ezmesi</p>
                   <h3>İpek Kıvam</h3>
                 </div>
-                <strong>₺799</strong>
+                <strong>₺{money(CATALOG["ipek-kivam"].price)}</strong>
               </div>
               <button className="add-button" data-product="İpek Kıvam" data-product-id="ipek-kivam">
                 Sepete ekle <span>+</span>
@@ -266,7 +268,15 @@ export default function HomePage() {
       <div className="toast" id="toast" role="status" aria-live="polite"></div>
 
       {/* Sepet/checkout etkileşimi orijinal script.js ile birebir aynı; React state'e
-          taşımak yerine (DOM'u doğrudan yöneten) orijinal dosya aynen kullanılıyor. */}
+          taşımak yerine (DOM'u doğrudan yöneten) orijinal dosya aynen kullanılıyor.
+          Fiyatların tek kaynaktan (CATALOG) gelmesi için katalog burada JSON olarak
+          gömülüyor; script.js kendi fiyat kopyasını tutmuyor, bunu okuyor. Böylece
+          fiyat sadece src/lib/pricing.ts'te değişince sepette de otomatik güncellenir. */}
+      <script
+        id="catalog-data"
+        type="application/json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(CATALOG).replace(/</g, "\\u003c") }}
+      />
       <Script src="/script.js" strategy="afterInteractive" />
     </>
   );

@@ -30,3 +30,17 @@ docker compose up --build
 ## Ortam değişkenleri
 
 `.env.example` dosyasına bakın: `PORT`, `POSTGRES_CONNECTION_STRING`, `IYZICO_API_KEY`, `IYZICO_SECRET_KEY`, `IYZICO_BASE_URL`, `PUBLIC_BASE_URL`.
+
+### Fındık fiyatlarını güncelleme
+
+Ürün fiyatları elle tek tek girilmiyor; `src/lib/pricing.ts`'teki tek bir temel fındık
+fiyatından (TL/kg) otomatik hesaplanıyor (bkz. `CATALOG`, `src/lib/catalog.ts`). Güncel
+piyasaya göre fiyat ayarlamak için iki yol var:
+
+- `FINDIK_BASE_FIYATI` ortam değişkenini ayarlayın (örn. `docker-compose.yml`'de veya
+  dağıtım ortamınızda) — kod değişikliği gerekmez.
+- Ya da `src/lib/pricing.ts` içindeki `BASE_FINDIK_PRICE_PER_KG` varsayılanını güncelleyip
+  deploy edin.
+
+Her iki durumda da ürün kartları, sepet ve checkout (iyzico'ya giden) tutarı otomatik
+olarak yeni fiyata göre yeniden hesaplanır; üç yerde ayrı ayrı güncelleme yapmaya gerek yoktur.
