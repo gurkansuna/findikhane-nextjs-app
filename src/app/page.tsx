@@ -1,5 +1,5 @@
 import Script from "next/script";
-import { CATALOG } from "@/lib/catalog";
+import { CATALOG, CATALOG_VERSION } from "@/lib/catalog";
 import { money } from "@/lib/money";
 
 export default function HomePage() {
@@ -277,7 +277,7 @@ export default function HomePage() {
         type="application/json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(CATALOG).replace(/</g, "\\u003c") }}
       />
-      <Script src="/script.js" strategy="afterInteractive" />
+      <Script src={`/script.js?v=${CATALOG_VERSION}`} strategy="afterInteractive" />
     </>
   );
 }

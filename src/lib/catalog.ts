@@ -4,6 +4,7 @@
 // güncel piyasaya göre fiyat ayarlamak için o dosyadaki BASE_FINDIK_PRICE_PER_KG
 // (veya FINDIK_BASE_FIYATI ortam değişkenini) güncellemeniz yeterlidir.
 
+import crypto from "node:crypto";
 import { computePrice } from "./pricing";
 
 export type Product = {
@@ -37,3 +38,14 @@ export const CATALOG: Record<string, Product> = {
 export function getProduct(id: string): Product | undefined {
   return Object.prototype.hasOwnProperty.call(CATALOG, id) ? CATALOG[id] : undefined;
 }
+
+// Fiyatlar değiştiğinde (temel fındık fiyatı ya da bir ürünün çarpanı) bu değer de
+// değişir. page.tsx bunu /script.js'in URL'sine ekliyor (?v=...); böylece tarayıcı
+// veya aradaki bir CDN/nginx script.js'i ne kadar agresif önbelleğe alırsa alsın,
+// fiyat değiştiğinde URL de değiştiği için eski (fiyatı farklı hesaplayan) sürüm asla
+// yeniden kullanılmaz; sepet her zaman sayfadaki güncel fiyatla aynı script.js'i okur.
+export const CATALOG_VERSION = crypto
+  .createHash("md5")
+  .update(JSON.stringify(Object.fromEntries(Object.values(CATALOG).map((p) => [p.id, p.price]))))
+  .digest("hex")
+  .slice(0, 8);
