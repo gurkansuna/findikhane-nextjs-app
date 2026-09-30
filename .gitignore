@@ -1,0 +1,13 @@
+# Bağımlılıklar ve build çıktıları
+node_modules/
+.next/
+*.tsbuildinfo
+
+# Ortam değişkenleri / sırlar — gerçek değerler asla commit'lenmemeli.
+# Şablon için .env.example'a bakın.
+.env
+.env.*
+!.env.example
+
+# Editör / işletim sistemi
+.DS_Store

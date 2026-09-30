@@ -1,3 +1,6 @@
+# ${DEĞİŞKEN} yer tutucuları, bu dosyayla aynı klasördeki .env dosyasından
+# otomatik doldurulur (Docker Compose'un yerleşik davranışı; ayrı bir env_file:
+# tanımına gerek yok). Şablon için .env.example'a bakın: cp .env.example .env
 services:
   api:
     build: .
