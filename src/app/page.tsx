@@ -5,7 +5,7 @@ import { money } from "@/lib/money";
 export default function HomePage() {
   return (
     <>
-      <div className="topline">Ücretsiz kargo · 750 TL ve üzeri siparişlerde</div>
+      <div className="topline">Ücretsiz kargo · 1500 TL ve üzeri siparişlerde</div>
       <header className="site-header">
         <a className="brand" href="#anasayfa" aria-label="Fındıkhane ana sayfa">
           <span className="brand-mark">F</span>
