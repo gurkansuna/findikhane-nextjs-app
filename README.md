@@ -29,7 +29,26 @@ docker compose up --build
 
 ## Ortam değişkenleri
 
-`.env.example` dosyasına bakın: `PORT`, `POSTGRES_CONNECTION_STRING`, `IYZICO_API_KEY`, `IYZICO_SECRET_KEY`, `IYZICO_BASE_URL`, `PUBLIC_BASE_URL`.
+`.env.example` dosyasına bakın: `PORT`, `POSTGRES_CONNECTION_STRING`, `IYZICO_API_KEY`, `IYZICO_SECRET_KEY`, `IYZICO_BASE_URL`, `PUBLIC_BASE_URL`. Yönetim paneli için ayrıca `ADMIN_USERNAME`, `ADMIN_PASSWORD`, `ADMIN_SESSION_SECRET`
+(rastgele, uzun bir dize; oturum çerezini imzalamak için kullanılır) gerekir.
+
+## Yönetim paneli (/admin)
+
+`/admin` altında, tek bir yönetici hesabıyla korunan bir sipariş listesi paneli
+var (`/admin/login` giriş ekranı, `/admin` sipariş listesi). Sipariş no, tarih,
+alıcı adı/telefon/adres, sepet içeriği, tutar ve ödeme durumunu gösterir; sipariş
+no veya alıcı adına göre arama ve sayfalama içerir.
+
+- Kullanılacak kullanıcı adı/şifre `ADMIN_USERNAME` / `ADMIN_PASSWORD` ortam
+  değişkenlerinden okunur; bu ikisi ve `ADMIN_SESSION_SECRET` tanımlı değilse
+  panel "henüz yapılandırılmadı" diyerek girişi reddeder.
+- Oturum, süresi 12 saat sonra dolan, HMAC ile imzalanmış bir HttpOnly çerezle
+  tutulur; ayrı bir kullanıcı/oturum tablosu yoktur.
+- T.C. kimlik no hiçbir zaman veritabanına yazılmaz; sadece iyzico'ya gönderilir.
+  Alıcı adı, telefonu, adresi ve şehri ise sipariş kaydına (`orders` tablosu)
+  eklenmiştir — bu, kişisel veri saklamak anlamına geldiğinden KVKK kapsamında
+  saklama süresi/erişim/silme sorumluluğu doğurur.
+
 
 ### Fındık fiyatlarını güncelleme
 

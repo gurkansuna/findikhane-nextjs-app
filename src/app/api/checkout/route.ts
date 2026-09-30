@@ -65,7 +65,15 @@ export async function POST(request: NextRequest) {
       cart,
       conversationId,
       total,
-      paymentStatus: "PENDING"
+      paymentStatus: "PENDING",
+      buyer: {
+        firstName: buyer.firstName,
+        lastName: buyer.lastName,
+        email: buyer.email,
+        gsmNumber: buyer.gsmNumber,
+        address: buyer.address,
+        city: buyer.city
+      }
     });
 
     const address = {
